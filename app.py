@@ -21,7 +21,7 @@ def main():
         df = pd.DataFrame(MinMaxScaler().fit(df).transform(df), columns=df.columns)
 
 
-        result_df = pd.DataFrame(classifier.predict_proba(df)[1])
+        result_df = pd.DataFrame(classifier.predict_proba(df))[1]
             
         st.write("Output DataFrame depicting probability of the transaction being fraudulant.")
         st.write(result_df)
