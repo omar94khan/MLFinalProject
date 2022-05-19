@@ -7,7 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 def main():
     st.title('Fraud Detector')
 
-    file = st.file_uploader("Choose a file")
+    file = st.file_uploader("Choose a file. Please ensure the file only has 30 columns including Time, V1-V28, and Amount; all amounts unscaled.")
 
     if file is not None:
         classifier = pickle.load(open('RandomForrestClassifier_df4x.pkl', 'rb'))
