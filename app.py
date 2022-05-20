@@ -14,7 +14,7 @@ def main():
         
         df = pd.read_csv(file)
         st.write("The dataset you uploaded is:")
-        st.write(df)
+#        st.write(df)
 
         df2 = pd.DataFrame()
         
@@ -24,11 +24,10 @@ def main():
 
         for col in columns:
             df2[col] = df[col]
-        df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
-#        for col in ['Class']:
-#            df = df.loc[:,df.columns != col]
-#        df = pd.DataFrame(MinMaxScaler().fit(df).transform(df), columns=df.columns)
 
+        df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
+ 
+         st.write(df2)
 
         result_df = pd.DataFrame(classifier.predict_proba(df2))[1]
             
