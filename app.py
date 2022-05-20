@@ -33,4 +33,8 @@ def main():
         st.write(result_df)
         st.write("Result shape: ", result_df.shape)
 
+        st.download_button(label="Download the results",
+                            data = result_df.to_csv().encode('utf-8'),
+                            file_name = "fraud_probability.csv",
+                            mime = 'text/csv')
 main()
