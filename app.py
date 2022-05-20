@@ -7,7 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 def main():
     st.title('Fraud Detector')
 
-    file = st.file_uploader("Choose a file. Please ensure the file only has 30 columns including Time, V1-V28, and Amount; all amounts unscaled.")
+    file = st.file_uploader("Please upload a csv file which contains the columns 'Time', 'V1' - 'V28', and 'Amount'.")
 
     if file is not None:
         classifier = pickle.load(open('RandomForrestClassifier_df4x.pkl', 'rb'))
@@ -28,9 +28,9 @@ def main():
 
         df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
         result_df = pd.DataFrame(classifier.predict_proba(df2))[1]
-        st.write("Result shape: ", result_df.shape)
             
         st.write("Output DataFrame depicting probability of the transaction being fraudulant.")
         st.write(result_df)
-    
+        st.write("Result shape: ", result_df.shape)
+
 main()
