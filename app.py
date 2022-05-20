@@ -16,12 +16,21 @@ def main():
         st.write("The dataset you uploaded is:")
         st.write(df)
 
-        for col in ['Class']:
-            df = df.loc[:,df.columns != col]
-        df = pd.DataFrame(MinMaxScaler().fit(df).transform(df), columns=df.columns)
+        df2 = pd.DataFrame()
+        
+        columns = ['Time','V1','V2','V3','V4','V5','V6','V7','V8','V9','V10','V11','V12',
+                    'V13','V14','V15','V16','V17','V18','V19','V20','V21','V22','V23',
+                    'V24','V25','V26','V27','V28','Amount']
+
+        for col in columns:
+            df2[col] = df[col]
+        df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
+#        for col in ['Class']:
+#            df = df.loc[:,df.columns != col]
+#        df = pd.DataFrame(MinMaxScaler().fit(df).transform(df), columns=df.columns)
 
 
-        result_df = pd.DataFrame(classifier.predict_proba(df))[1]
+        result_df = pd.DataFrame(classifier.predict_proba(df2))[1]
             
         st.write("Output DataFrame depicting probability of the transaction being fraudulant.")
         st.write(result_df)
