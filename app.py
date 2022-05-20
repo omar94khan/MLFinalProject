@@ -14,7 +14,8 @@ def main():
         
         df = pd.read_csv(file)
         st.write("The dataset you uploaded is:")
-#        st.write(df)
+        st.write(df)
+        st.write("The dataset is of shape: ", df.shape)
 
         df2 = pd.DataFrame()
         
@@ -26,10 +27,8 @@ def main():
             df2[col] = df[col]
 
         df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
- 
-        st.write(df2)
-
         result_df = pd.DataFrame(classifier.predict_proba(df2))[1]
+        st.write("Result shape: ", result_df.shape)
             
         st.write("Output DataFrame depicting probability of the transaction being fraudulant.")
         st.write(result_df)
