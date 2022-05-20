@@ -10,8 +10,6 @@ def main():
     file = st.file_uploader("Please upload a csv file which contains the columns 'Time', 'V1' - 'V28', and 'Amount'.")
 
     if file is not None:
-        classifier = pickle.load(open('RandomForrestClassifier_df4x.pkl', 'rb'))
-        
         df = pd.read_csv(file)
         st.write("The dataset you uploaded is:")
         st.write(df)
@@ -27,6 +25,8 @@ def main():
             df2[col] = df[col]
 
         df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
+        
+        classifier = pickle.load(open('RandomForrestClassifier_df4x.pkl', 'rb'))
         result_df = pd.DataFrame(classifier.predict_proba(df2))[1]
             
         st.write("Output DataFrame depicting probability of the transaction being fraudulant.")
