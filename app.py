@@ -27,7 +27,7 @@ def main():
 
         df2 = pd.DataFrame(MinMaxScaler().fit(df2).transform(df2), columns=df2.columns)
  
-         st.write(df2)
+        st.write(df2)
 
         result_df = pd.DataFrame(classifier.predict_proba(df2))[1]
             
